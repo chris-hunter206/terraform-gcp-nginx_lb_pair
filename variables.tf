@@ -12,6 +12,10 @@ variable "instance_base_image" {
 }
 variable "labels" {
   description = "VM instance labels"
+  default = {
+    "environment" = "test",
+    "application" = "webserver"
+  }
   type = map
 }
 variable "managed_zone_name" {
@@ -25,10 +29,15 @@ variable "network" {
 }
 variable "node_names" {
   description = "VM instance node names"
+  default = [
+    "web01",
+    "web02",
+  ]
   type = list(string)
 }
 variable "node_count" {
   description = "Number of VM instances in group"
+  default = 2
   type = number
 }
 variable "machine_type" {
@@ -41,6 +50,13 @@ variable "project_id" {
 }
 variable "project_services" {
   description = "List of services that will be needed for the project"
+  default = [
+    "compute.googleapis.com",
+    "dns.googleapis.com",
+    "iam.googleapis.com",
+    "iamcredentials.googleapis.com",
+    "logging.googleapis.com",
+  ]
   type = list(string)
 }
 variable "region" {
@@ -62,6 +78,11 @@ variable "subnetwork" {
 }
 variable "tags" {
   description = "Tags for VM instances"
+  default = [
+    "http-server",
+    "allow-ssh",
+    "load-balanced-backend",
+  ]
   type = list(string)
 }
 variable "template_name" {
