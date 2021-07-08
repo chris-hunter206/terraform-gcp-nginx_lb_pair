@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Run prior to anny terraform steps. This will set the terraform service
+# account in the local gcloud config, and authenticate to GCP.
+
+# set these three to your project specific values
+export GCP_PROJECT=<your project name>
+export GOOGLE_APPLICATION_CREDENTIALS=<your credentials.json file path>
+export GCP_SERVICE_ACCOUNT=<your service account email>
+
+gcloud config set account ${GCP_SERVICE_ACCOUNT}
+gcloud config set project ${GCP_PROJECT}
+gcloud auth application-default login
+gcloud services enable iam.googleapis.com
+gcloud services enable compute.googleapis.com
+gcloud projects add-iam-policy-binding ${GCP_PROJECT} --role=roles/cloudfunctions.serviceAgent --member=serviceAccount:${GCP_SERVICE_ACCOUNT}

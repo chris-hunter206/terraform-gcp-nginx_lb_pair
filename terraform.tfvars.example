@@ -1,0 +1,36 @@
+project_id            = <your GCP project id>
+credentials_file      = <path to your service account credentials.json file>"
+domain                = <your root domain name aka "domain.com.">
+managed_zone_name     = <your gcp dns zone name>
+region                = <your region, aka "us-west1">
+zones = [
+  <your first zone aka:"us-west1-a">,
+  <your second zone aka:"us-west1-c">,
+]
+service_account_id    = <your GCP terraform service account>
+service_account_email = <your GCP terraform service account email address>
+
+instance_base_image = "ubuntu-os-cloud/ubuntu-1804-lts"
+labels = {
+  "environment" = "test",
+  "application" = "webserver",
+}
+node_count = 2
+node_names = [
+  "web01",
+  "web02",
+]
+machine_type   = "f1-micro"
+project_services = [
+  "compute.googleapis.com",
+  "dns.googleapis.com",
+  "iam.googleapis.com",
+  "iamcredentials.googleapis.com",
+  "logging.googleapis.com",
+]
+tags = [
+    "http-server",
+    "allow-ssh",
+    "load-balanced-backend",
+]
+template_name = "test"
