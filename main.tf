@@ -1,4 +1,14 @@
-
+###############
+## Providers ##
+###############
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+      version = "3.66.1"
+    }
+  }
+}
 
 # Configure the Google provider.
 provider "google" {
@@ -90,7 +100,7 @@ resource "google_compute_instance_group" "web_group" {
   zone      = var.zones[count.index]
 
   instances = [
-    google_compute_instance_from_template.web[count.index].id
+    google_compute_instance_from_template.web[count.index].self_link
   ]
 
   named_port {
