@@ -4,7 +4,7 @@ Google Compute Engine. A script will install nginx as a post-build step,
 setting up the infrastruture for a basic web hosting application with
 geographic zone redundancy.
 
-# Requirements
+## Requirements
 This assumes you have a few things before the build can start: 
 * An existing project in Google Cloud that you can
 work within.
@@ -14,7 +14,7 @@ This should have the ```cloud functions service``` role.
 run the build. This information is output when you create the service
 account.
 
-# Setup & Installation
+## Setup & Installation
 
 1. Gather custom settings information to define variables for your GCP
    project. Specific values you will need are:
@@ -42,7 +42,7 @@ account.
    
 5. Install Terraform if it is not already setup on your build host.
 
-# Build
+## Build
 
 1. In the ```terraform-gcp-nginx_lb_par``` directory, Run ```terraform init```
    to create the local infrastucture and initialize the provider information.
