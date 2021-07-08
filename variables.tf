@@ -18,6 +18,11 @@ variable "managed_zone_name" {
   description = "data resource name for google_dns_managed_zone"
   type = string
 }
+variable "network" {
+  description = "GCP network name"
+  type = string
+  default = "default"
+}
 variable "node_names" {
   description = "VM instance node names"
   type = list(string)
@@ -49,6 +54,11 @@ variable "service_account_email" {
 variable "service_account_id" {
   description = "Text name of the GCP terraform service account"
   type = string
+}
+variable "subnetwork" {
+  description = "GCP subnetwork name"
+  type = string
+  default = "default"
 }
 variable "tags" {
   description = "Tags for VM instances"

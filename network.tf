@@ -9,11 +9,11 @@ locals {
 }
 
 data "google_compute_network" "default" {
-  name = "default"
+  name = var.network
 }
 
 data "google_compute_subnetwork" "default" {
-  name    = "default"
+  name    = var.subnetwork
   project = var.project_id
   region  = var.region
 }
@@ -76,7 +76,7 @@ resource "google_compute_forwarding_rule" "web_int" {
   load_balancing_scheme = "INTERNAL"
   network_tier          = "PREMIUM"
   allow_global_access   = true
-  subnetwork            = "default"
+  subnetwork            = var.subnetwork
 
   backend_service = google_compute_region_backend_service.web_int[0].self_link
   ports           = [80]
