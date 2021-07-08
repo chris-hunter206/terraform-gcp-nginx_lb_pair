@@ -105,7 +105,7 @@ resource "google_compute_http_health_check" "web" {
 # instances, including the http_health_check above
 resource "google_compute_target_pool" "global_region" {
   project = var.project_id
-  name    = "us-west1-pool"
+  name    = "global-region-pool"
   region  = local.regions.0
 
   instances = [
@@ -114,7 +114,7 @@ resource "google_compute_target_pool" "global_region" {
   ]
 
   health_checks = [
-    google_compute_http_health_check.web.0.name,
+    google_compute_http_health_check.web.0.self_link,
   ]
 }
 
