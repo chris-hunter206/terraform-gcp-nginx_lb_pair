@@ -19,7 +19,7 @@ data "google_compute_subnetwork" "default" {
 }
 
 
-# Add HTTP allow rule
+# Define HTTP allow rule
 resource "google_compute_firewall" "default" {
   name    = "allow-http"
   network = data.google_compute_network.default.name
@@ -86,8 +86,9 @@ resource "google_compute_forwarding_rule" "web_int" {
 ## External Load Balancer ##
 ############################
 
-# target pool on the other hand, requires legacy http_health_check
-# and can't use health_check
+# Unlike the backend service, the frontend target pool, requires the legacy
+# "http_health_check" and can't use "health_check", so we'll define that here.
+# We'll need a seperate check for each zone in var.zones
 resource "google_compute_http_health_check" "web" {
   count   = length(var.zones)
   project = var.project_id
@@ -100,8 +101,9 @@ resource "google_compute_http_health_check" "web" {
   unhealthy_threshold = 2
 }
 
-# setup pool for the global region
-resource "google_compute_target_pool" "us_west1" {
+# setup pool for the global region and define instance members from our VM
+# instances, including the http_health_check above
+resource "google_compute_target_pool" "global_region" {
   project = var.project_id
   name    = "us-west1-pool"
   region  = local.regions.0
@@ -125,7 +127,7 @@ resource "google_compute_forwarding_rule" "external" {
   load_balancing_scheme = "EXTERNAL"
   network_tier          = "PREMIUM"
 
-  target     = google_compute_target_pool.us_west1.self_link
+  target     = google_compute_target_pool.global_region.self_link
   port_range = "80"
 }
 
