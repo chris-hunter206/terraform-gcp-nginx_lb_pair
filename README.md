@@ -13,6 +13,8 @@ This should have the ```cloud functions service``` role.
 * A credentials.json file on the local filesystem that you will use to
 run the build. This information is output when you create the service
 account.
+* You have the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)  installed to run ```gcloud``` commands
+on your local shell
 
 ## Setup & Installation
 
@@ -42,7 +44,7 @@ account.
    
 5. Install Terraform if it is not already setup on your build host.
 
-## Build
+## Building the GCP resources
 
 1. In the ```terraform-gcp-nginx_lb_par``` directory, Run ```terraform init```
    to create the local infrastucture and initialize the provider information.
