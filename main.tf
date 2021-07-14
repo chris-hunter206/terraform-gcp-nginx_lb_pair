@@ -7,7 +7,12 @@ terraform {
       source = "hashicorp/google"
       version = "3.66.1"
     }
+    template = {
+      source = "hashicorp/template"
+      version = "2.2.0"
+    }
   }
+  required_version = ">= 0.14"
 }
 
 # Configure the Google provider.
@@ -132,6 +137,9 @@ data "template_file" "nginx" {
 output "vm_internal_IPs" {
   value = google_compute_instance_from_template.web.*.network_interface.0.network_ip
 }
-output "External_HTTP_URL" {
+output "External_HTTP_URL_IP" {
   value = format("http://%s/", google_compute_forwarding_rule.external.ip_address)
+}
+output "External_HTTP_URL_Domain" {
+  value = format("http://%s/", trim(var.domain, "."))
 }
