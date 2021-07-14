@@ -5,7 +5,8 @@ setting up the infrastruture for a basic load-balanced web hosting
 application with geographic zone redundancy.
 
 ## Requirements
-This assumes you have a few things before the build can start: 
+This assumes you have a few things before the build can start:
+* [Terraform is installed](https://learn.hashicorp.com/tutorials/terraform/install-cli) on your local host
 * An existing project in Google Cloud that you can
 work within.
 * A service account that Terraform can use to build within the project. 
@@ -46,8 +47,6 @@ on your local shell
    up by re-running the script. The script is idempotent so this should not
    cause any issue.
    
-5. Install Terraform if it is not already setup on your build host.
-
 ## Building the GCP resources
 
 1. In the ```terraform-gcp-nginx_lb_par``` directory, Run ```terraform init```
