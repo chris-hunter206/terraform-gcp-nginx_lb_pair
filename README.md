@@ -1,8 +1,8 @@
 # terraform-gcp-nginx_lb_pair
 This repo will use Terraform to setup a pair of load-balanced VM hosts in
 Google Compute Engine. A script will install nginx as a post-build step,
-setting up the infrastruture for a basic web hosting application with
-geographic zone redundancy.
+setting up the infrastruture for a basic load-balanced web hosting
+application with geographic zone redundancy.
 
 ## Requirements
 This assumes you have a few things before the build can start: 
