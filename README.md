@@ -44,8 +44,8 @@ on your local shell
    account and enable required APIs needed for the terraform build. 
    
    Occasionally you may see errors from GCP at this step, and these may clear
-   up by re-running the script. The script is idempotent so this should not
-   cause any issue.
+   up by re-running the script. The script is idempotent so running it multiple
+   times will not cause any issues.
    
 ## Building the GCP resources
 
